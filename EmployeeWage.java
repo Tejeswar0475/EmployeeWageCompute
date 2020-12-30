@@ -1,6 +1,5 @@
 package com.javaprogram.employeewage;
 
-
 import java.util.*;
 
 public class EmployeeWage {
@@ -10,6 +9,7 @@ public class EmployeeWage {
 
 	public static void main(String[] args)
 	{
+		final int wagePerHour=20;
 		System.out.println("Welcome to employee wage computation program");
 		Random random=new Random();
 		int attendance=random.nextInt(2);
@@ -21,6 +21,9 @@ public class EmployeeWage {
 		{
 			System.out.println("absent "+attendance);
 		}
+		int dailyEmpWage=attendance*wagePerHour;
+		System.out.println("Daily Emp Wage:"+dailyEmpWage);
+
 	}
 
 }
