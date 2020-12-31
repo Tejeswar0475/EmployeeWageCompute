@@ -2,17 +2,27 @@ package com.javaprogram.employeewage;
 
 import java.util.*;
 
-class EmployeeWage
+interface EmpWageBuilder
+{
+	public void wageCompute(companyEmployeeWage obj);
+
+}
+
+
+public class EmployeeWage implements EmpWageBuilder
 {
 	final int IS_PART_TIME=1;
 	final int IS_FULL_TIME=2;
-
+	ArrayList<Integer> empDailyMonthlyTotalWage=new ArrayList<Integer>();
 	public void wageCompute(companyEmployeeWage companyEmp)
 	{
+		System.out.println("Now" +companyEmp.getCompanyName()+ "Employee wage Computation");
+
 		int empHours=0;
 		int totalEmpHours=0;
 		int totalWorkingDays=0;
 		int totalEmpWage=0;
+		int empDailyWage=0;
 		while(totalWorkingDays < companyEmp.getNoOfWorkingDay() && totalEmpHours < companyEmp.getmaxHoursInMonth())
 		{
 			int employeePresence=(int) ( ( Math.random()*10 ) % 3);
@@ -29,10 +39,19 @@ class EmployeeWage
 			}
 			totalWorkingDays++;
 			totalEmpHours=totalEmpHours+empHours;
+			empDailyWage=empHours*companyEmp.getEmpRatePerHour();
+			empDailyMonthlyTotalWage.add(empDailyWage);
+			System.out.println("Day:"+totalWorkingDays+"Wage is:"+empDailyWage);
+
 		}
+		totalEmpWage=(totalEmpHours*companyEmp.getEmpRatePerHour());
+		empDailyMonthlyTotalWage.add( totalEmpWage);
 		companyEmp.setTotalEmpWage(totalEmpHours*companyEmp.empRatePerHour);
 		System.out.println("Employee Monthly wage of" +companyEmp.getComapanyName()+ " is " + companyEmp.getTotalEmpWage());
+
+
 	}
+
 	public static void main(String[] args)
 	{
 		System.out.println("Welcome to employee wage");
